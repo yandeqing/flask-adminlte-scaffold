@@ -19,7 +19,7 @@ class BaseModel(Model):
 
     def __str__(self):
         r = {}
-        for k in self._data.keys():
+        for k in self.__data__.keys():
             try:
                 r[k] = str(getattr(self, k))
             except:
@@ -63,3 +63,10 @@ def create_table():
 
 if __name__ == '__main__':
     create_table()
+    User.insert(
+        {"username": "admin",
+         "password": "pbkdf2:sha1:1000$Km1vdx3W$9aa07d3b79ab88aae53e45d26d0d4d4e097a6cd3",
+         "fullname": "管理员",
+         "email": "admin@admin.com",
+         "phone": "18612341234",
+         "status": 1}).execute()

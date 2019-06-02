@@ -1,14 +1,18 @@
 from flask import Flask
 from flask_login import LoginManager
+
+from app import PathUtil
 from conf.config import config
 import logging
 from logging.config import fileConfig
-import os
+import sys, os
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
-fileConfig('conf/log-app.conf')
+
+fileConfig(os.path.join(PathUtil.getRootDir(), 'conf', 'log-app.conf'))
+
 
 def get_logger(name):
     return logging.getLogger(name)
